@@ -1,0 +1,12 @@
+{
+    "name": "sonypradana/ccode",
+    "description": "Simple generator to creat uniq id from number and convert back to number/id",
+    "keywords": ["php", "uniq id", "reversible id"],
+    "authors": [
+        {
+            "name": "Angger Pradana",
+            "email": "sonypradana@gmail.com"
+        }
+    ],
+    "require": {}
+}
