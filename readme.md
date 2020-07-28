@@ -41,6 +41,8 @@ You can make id using declare class or directly.
 
 Craet class
 ```php
+use CCode\Converter\CCode;
+
 $ccode = new CCode();
 ```
 Creat id (string) from number
@@ -71,17 +73,23 @@ You also can call function directly
 
 Convert from **id/code/string** to **number**
 ```php
+use CCode\Converter\CCode;
+
 $id_number = CCode::ConvertFromCode( "0B" );
 echo $id_number; // will out put 99
 ```
 Convert from **number** to **id/code/string**
 ```php
+use CCode\Converter\CCode;
+
 $id_code = CCode::ConvertFromNumber( 99 );
 echo $id_code; // will out put "0B"
 ```
 
 If you want to get random **id/code/string**, you can use
 ```php
+use CCode\Converter\CCode;
+
 $id_code = CCode::RandomCode( 4 ); // how many digit code you want
 echo $id_code; // random code 
 ```

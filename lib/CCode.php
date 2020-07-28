@@ -1,4 +1,5 @@
 <?php
+namespace CCode\Converter;
 /**
  * Simple script to convert from number to code/id/string 
  * 
