@@ -1,5 +1,5 @@
 {
-    "name": "sonypradana/ccode",
+    "name": "sonypradana/convertcode",
     "description": "Simple generator to creat uniq id from number and convert back to number/id",
     "keywords": ["php", "uniq id", "reversible id"],
     "authors": [
@@ -8,5 +8,22 @@
             "email": "sonypradana@gmail.com"
         }
     ],
-    "require": {}
+    "support": {
+        "issues": "https://github.com/SonyPradana/ConvertCode/issues/"
+    },
+    "require": {
+        "php": "^5.3.3 || ^7.0 || ^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.3"
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "autoload": {
+        "psr-4": {
+            "Convert\\Converter\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
 }

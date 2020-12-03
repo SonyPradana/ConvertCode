@@ -1,5 +1,7 @@
 <?php
-namespace CCode\Converter;
+
+namespace Convert\Converter;
+
 /**
  * Simple script to convert from number to code/id/string 
  * 
@@ -7,7 +9,8 @@ namespace CCode\Converter;
  * @author Angger Pradana
  * @link https://github.com/SonyPradana/Ccode
  */
-class CCode{
+class ConvertCode
+{
     /** @var int Number for this section */
     private $_number = 0;
 
@@ -80,46 +83,58 @@ class CCode{
     /** Get code from this section
      * @return string Code/id/string     * 
      */
-    public function getCode():string{
-        $res = new CCode();
+    public function getCode(): string
+    {
+        $res = new ConvertCode();
         return $res->convertNumberToCode($this->_number);
     }
+
     /** Get number from this section
      * @return int Number
      */
-    public function getNumber():int{
+    public function getNumber(): int
+    {
         return $this->_number;;
     }
+
     /** Set code/id to this section
      * @param string $code Code/id/string to convert
      */
-    public function setCode(string $code){
-        $res = new CCode();
+    public function setCode(string $code)
+    {
+        $res = new ConvertCode();
         $this->_number = $res->convertCodeToNumber($code);
+        return $this;
     }
+
     /** Set number to this section
      * @param int $number Number to convert
      */
-    public function setNumber(int $number){
+    public function setNumber(int $number)
+    {
         $this->_number = $number;
+        return $this;
     }
 
     /** Add a certain number to this section 
      * @param $number How many number (+) operator
      * @return bool True if success execution
      */
-    public function plusOperator(int $number = 1){
-        if( is_numeric($number) ){
+    public function plusOperator(int $number = 1): bool
+    {
+        if (is_numeric($number)) {
             $this->_number + $number;
             return true;
         }
         return false;
     }
+
     /** Reduce certain numbers to this section 
      * @param $number How many number (+) operator
      * @return bool True if success execution*/
-    public function minusOperator(int $number = 1){
-        if( is_numeric($number) ){
+    public function minusOperator(int $number = 1): bool
+    {
+        if (is_numeric($number)) {
             $this->_number - $number;
             return true;
         }
@@ -127,15 +142,17 @@ class CCode{
     }
 
     // private methode
+
     /** Convert from code to number
      * @param string $code Code/id to convert
      * @return int Result convert as number
      */
-    private function convertCodeToNumber(string $code):int{
+    private function convertCodeToNumber(string $code): int
+    {
         $arr_code = preg_split('//u', $code, -1, PREG_SPLIT_NO_EMPTY);
         $digit = (int) count( $arr_code );
         // One digit, return as array index from codes
-        if( $digit == 1){
+        if ($digit == 1) {
             return array_search(max($arr_code), $this->codes);
         }
         $sum = (int) -1;
@@ -148,19 +165,22 @@ class CCode{
             $sum += $row; 
             $j--;
         }
+
         $digit += 1;
         return $sum + (62 * ($digit - 1)) - 62;
     }
+
     /** Convert from number to code
      * @param int $number Number to convert
      * @return string Result convert as code/id
      */
-    private function convertNumberToCode(int $number):string{
+    private function convertNumberToCode(int $number): string
+    {
         // Negative number not allow
-        if( $number < 0 ) return false;
+        if ($number < 0) return false;
         $code = []; 
 
-        if( $number < 62){
+        if ($number < 62) {
             $code[] = $this->codes[$number];
             return implode("", $code);
         }
@@ -185,7 +205,9 @@ class CCode{
         // Remove 0 (zero) before "Z"
         // if 0 number before Z exis couse false indexing
         unset( $code[0] );
-        if( $code[1] == 0 && $code[2] == "Z" && isset( $code[3]) ){
+        if ($code[1] == 0 
+        && $code[2] == "Z"
+        && isset( $code[3])) {
             unset( $code[1] );
         }
         $res = implode("", $code);
@@ -194,28 +216,34 @@ class CCode{
     }
 
     // static method
+
     /** Convert from code to number
      * @param string $code Code/id to convert
      * @return int Result convert as number
      */
-    public static function ConvertFromCode(string $code):int{
-        $res = new CCode();
+    public static function ConvertFromCode(string $code): int
+    {
+        $res = new ConvertCode();
         return $res->convertCodeToNumber($code);
     }
+
     /** Convert from number to code
      * @param int $number Number to convert
      * @return string Result convert as code/id
      */
-    public static function ConvertToCode(int $number):string{
-        $res = new CCode();
+    public static function ConvertToCode(int $number): string
+    {
+        $res = new ConvertCode();
         return $res->convertNumberToCode($number);
     }
+
     /** Random code based on the specified numbers
      * @param int $digit Makimum digit allowed
      */
-    public static function RandomCode(int $digit = 4):string{
+    public static function RandomCode(int $digit = 4): string
+    {
         $digit = $digit < 0 ? 1 : $digit;
-        $ccode = new CCode();
+        $ccode = new ConvertCode();
         $code = [];
         for ($i=0; $i < $digit; $i++) { 
             $code[] = $ccode->codes[rand(0, 61)];

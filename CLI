@@ -1,0 +1,43 @@
+<?php
+
+require_once __DIR__ . '\src\ConvertCode.php';
+
+$CCode = new Convert\Converter\ConvertCode();
+
+switch ($argv[1] ?? '') {
+  case 'to-code':
+    $CCode->setNumber($argv[2]);
+    echo $CCode->getCode();
+    break;
+  
+  case 'from-code':
+    $CCode->setCode($argv[2]);
+    echo $CCode->getNumber();
+    break;
+
+  case 'test':
+    $test_from = $argv[2] ?? 0;
+    $test_to = $argv[3] ?? $argv[2] ?? 100;
+    // $test_from = isset($argv[3]) ? $test_from : 0;
+    $test_to += 1; // becouse array start from 0
+
+    echo "run test $test_from to $test_to\n";
+    echo "-------------------------------------------------\n";
+    echo "|\tindex\t|\tcode\t|\tnumber\t|\n";
+    echo "----------------+---------------+----------------\n";
+    for ($i=$test_from; $i < $test_to; $i++) { 
+      $code   = $CCode::ConvertToCode($i);
+      $number = $CCode::ConvertFromCode($code);
+      echo "|\t$i\t|\t$code\t|\t$number\t|\n";
+    }
+    echo "-------------------------------------------------\n";
+    break;
+
+  default:
+    $code   = $CCode::RandomCode();
+    $number = $CCode::ConvertFromCode($code);  
+    echo "random 4 digit code\n";
+    echo "code \t-> $code\n";
+    echo "number \t-> $number\n";
+    break;
+}
