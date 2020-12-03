@@ -65,7 +65,7 @@ include 'path_to_ConvertCode_file' . '/ConvertCode.php';
 ```
 If using [Composer](https://getcomposer.org/)
 ```bash
-composer require sonypradana/ccode;
+composer require sonypradana/convertcode;
 ```
 
 ## Usage
