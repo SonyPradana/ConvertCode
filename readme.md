@@ -1,10 +1,10 @@
 # ConvertCode
-Simple script to creat uniq id from number, support until up to **11.694.146.092.834.141** digit number. With suport convert back to id (string).
+Simple script to create uniq id from number, support until up to **11.694.146.092.834.141** digit number. With support convert back to id (string).
 
 We recommended if you need shorter id from long number ex: timestamp, id with large integer, or name think.
 
 Basic convert is creat id from array of string, then build from array index one by one.
-You can costumize by edit entry of array.
+You can customize by edit entry of array.
 
 By default array using [0-9][a-z][A-Z] its mean case sensitive. different between AA and aA
 
